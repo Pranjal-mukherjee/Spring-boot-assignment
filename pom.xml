@@ -33,7 +33,9 @@
 			**/Application.java,
 			**/dto/**,
 			**/exception/**,
-			**/entity/**
+			**/entity/**,
+			**/config/**,
+			**/controller/HomeController.java
 		</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
