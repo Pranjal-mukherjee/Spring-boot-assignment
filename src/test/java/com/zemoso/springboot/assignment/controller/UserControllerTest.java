@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.controller;
 
-import com.zemoso.springboot.assignment.DTO.UserDTO;
+import com.zemoso.springboot.assignment.dto.UserDTO;
 import com.zemoso.springboot.assignment.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class UserControllerTest {
+ class UserControllerTest {
 
     @Mock
     private UserService userService;
@@ -30,7 +30,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetAllUser() {
+    void testGetAllUser() {
         // Prepare test data
         UserDTO user1 = new UserDTO();
         user1.setId(1L);
@@ -57,7 +57,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetUserById() {
+    void testGetUserById() {
         // Prepare test data
         Long userId = 1L;
         UserDTO expectedUser = new UserDTO();
@@ -80,7 +80,7 @@ public class UserControllerTest {
 
     // Similarly, write tests for createUser, updateUser, and deleteUser methods
     @Test
-    public void testCreateUser() {
+     void testCreateUser() {
         // Prepare test data
         UserDTO userDTO = new UserDTO();
         userDTO.setFirstName("JohnDoe");
@@ -104,7 +104,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testUpdateUser() {
+     void testUpdateUser() {
         // Prepare test data
         UserDTO userDTO = new UserDTO();
         userDTO.setId(1L);
@@ -129,7 +129,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testDeleteUser() {
+    void testDeleteUser() {
         // Prepare test data
         Long userId = 1L;
 

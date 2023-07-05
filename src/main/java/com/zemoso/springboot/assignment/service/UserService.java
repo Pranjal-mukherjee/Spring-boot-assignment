@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.UserDTO;
+import com.zemoso.springboot.assignment.dto.UserDTO;
 import com.zemoso.springboot.assignment.entity.Book;
 import com.zemoso.springboot.assignment.entity.User;
 import com.zemoso.springboot.assignment.repository.BookRepository;
@@ -15,6 +15,7 @@ public class UserService {
 
     private UserRepository userRepository;
     private BookRepository bookRepository;
+    String userNotFound = "User not found with id";
 
     public UserService(UserRepository userRepository, BookRepository bookRepository) {
         this.userRepository = userRepository;
@@ -25,12 +26,12 @@ public class UserService {
         List<User> users = userRepository.findAll();
         return users.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public UserDTO getUserById(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("User not found with id " + id));
+                .orElseThrow(() -> new NoSuchElementException(userNotFound + id));
 
         return convertToDto(user);
     }
@@ -48,21 +49,21 @@ public class UserService {
         user.setId(null);
 
         user = userRepository.save(user);
-        System.out.println(user.toString());
+       
         return convertToDto(user);
     }
 
     public UserDTO updateUser(UserDTO userDTO) {
         User existingUser = userRepository.findById(userDTO.getId())
                 .orElseThrow(()
-                -> new NoSuchElementException("User not found with id " + userDTO.getId()));
+                -> new NoSuchElementException(userNotFound + userDTO.getId()));
 
         existingUser.setFirstName(userDTO.getFirstName());
         existingUser.setLastName(userDTO.getLastName());
         existingUser.setEmail(userDTO.getEmail());
         Book book = bookRepository.findById(userDTO.getBookId())
                 .orElseThrow(()
-                        -> new NoSuchElementException("User not found with id " + userDTO.getBookId()));
+                        -> new NoSuchElementException(userNotFound + userDTO.getBookId()));
         existingUser.setBook(book);
 
         User user = userRepository.save(existingUser);

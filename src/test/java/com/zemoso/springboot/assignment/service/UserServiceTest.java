@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.UserDTO;
+import com.zemoso.springboot.assignment.dto.UserDTO;
 import com.zemoso.springboot.assignment.entity.Book;
 import com.zemoso.springboot.assignment.entity.User;
 import com.zemoso.springboot.assignment.repository.BookRepository;
@@ -91,7 +91,7 @@ class UserServiceTest {
 
 
     @Test
-    public void testCreateUser() {
+    void testCreateUser() {
         // Mock book repository
         Long bookId = 1L;
         Book book = new Book();
@@ -116,7 +116,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testCreateUserBookNotFound() {
+    void testCreateUserBookNotFound() {
         // Mock book repository
         Long bookId = 1L;
         Mockito.when(bookRepository.findById(bookId)).thenReturn(Optional.empty());
@@ -130,7 +130,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUser() {
+     void testUpdateUser() {
         // Mock user repository
         Long userId = 1L;
         User existingUser = new User();
@@ -164,7 +164,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void testUpdateUserNotFound() {
+    void testUpdateUserNotFound() {
         // Mock user repository
         Long userId = 1L;
         Mockito.when(userRepository.findById(userId)).thenReturn(Optional.empty());

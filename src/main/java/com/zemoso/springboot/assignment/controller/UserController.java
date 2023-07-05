@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.controller;
 
-import com.zemoso.springboot.assignment.DTO.UserDTO;
+import com.zemoso.springboot.assignment.dto.UserDTO;
 import com.zemoso.springboot.assignment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class UserController {
         return ResponseEntity.ok(userDTOS);
     }
 
-    // add mapping for GET /Books/{BookId}
+
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         UserDTO userDTO = userService.getUserById(id);

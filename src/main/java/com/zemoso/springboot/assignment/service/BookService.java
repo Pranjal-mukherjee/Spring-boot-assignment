@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.BookDTO;
+import com.zemoso.springboot.assignment.dto.BookDTO;
 import com.zemoso.springboot.assignment.entity.Book;
 import com.zemoso.springboot.assignment.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class BookService {
         List<Book> books = bookRepository.findAll();
         return books.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
         //.stream(): The .stream() method is used to convert the List<Book> into a stream of elements
         //.map(this::convertToDto) is used to convert each Book object to its corresponding
         // BookDTO object by invoking the convertToDto method.
@@ -44,7 +44,7 @@ public class BookService {
     public BookDTO getBookById(Long id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Book not found with id " + id));
-        System.out.println(book.toString());
+
         return convertToDto(book);
     }
 

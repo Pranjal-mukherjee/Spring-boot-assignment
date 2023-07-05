@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.controller;
 
-import com.zemoso.springboot.assignment.DTO.BookDTO;
+import com.zemoso.springboot.assignment.dto.BookDTO;
 import com.zemoso.springboot.assignment.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class BookControllerTest {
+class BookControllerTest {
 
     @Mock
     private BookService bookService;
@@ -30,7 +30,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testGetAllBook() {
+    void testGetAllBook() {
         // Prepare test data
         BookDTO book1 = new BookDTO();
         book1.setId(1L);
@@ -57,7 +57,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testGetBookById() {
+    void testGetBookById() {
         // Prepare test data
         Long bookId = 1L;
         BookDTO expectedBook = new BookDTO();
@@ -82,7 +82,7 @@ public class BookControllerTest {
 
 
     @Test
-    public void testCreateBook() {
+   void testCreateBook() {
         // Prepare test data
         BookDTO bookDTO = new BookDTO();
         bookDTO.setBookName("Book 1");
@@ -106,7 +106,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testUpdateBook() {
+    void testUpdateBook() {
         // Prepare test data
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(1L);
@@ -131,7 +131,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testDeleteBook() {
+     void testDeleteBook() {
         // Prepare test data
         Long bookId = 1L;
 
