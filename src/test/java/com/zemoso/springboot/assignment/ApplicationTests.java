@@ -9,7 +9,10 @@ class ApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Assertions.assertEquals("e","e");
+
+		String expected = "e";
+		String actual = "e";
+		Assertions.assertEquals(expected, actual);
 	}
 
 }
