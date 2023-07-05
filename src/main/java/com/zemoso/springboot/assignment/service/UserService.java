@@ -78,8 +78,15 @@ public class UserService {
         userDTO.setId(user.getId());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
+        Book book = user.getBook();
+        if (book != null) {
+            userDTO.setBookId(user.getBook().getId());
+        }
+        else {
+            userDTO.setBookId(null);
+        }
         userDTO.setEmail(user.getEmail());
-        userDTO.setBookId(user.getBook().getId());
+
 
         return userDTO;
     }

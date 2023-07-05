@@ -5,10 +5,12 @@ import com.zemoso.springboot.assignment.entity.Book;
 import com.zemoso.springboot.assignment.entity.User;
 import com.zemoso.springboot.assignment.repository.BookRepository;
 import com.zemoso.springboot.assignment.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.*;
@@ -87,6 +89,93 @@ class UserServiceTest {
         verify(userRepository, times(1)).findById(id);
     }
 
+
+    @Test
+    public void testCreateUser() {
+        // Mock book repository
+        Long bookId = 1L;
+        Book book = new Book();
+        book.setId(bookId);
+        Mockito.when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
+
+        // Mock user repository
+        User user = new User();
+        user.setId(1L);
+        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
+
+        // Create user DTO
+        UserDTO userDTO = new UserDTO();
+        userDTO.setBookId(bookId);
+
+        // Call the method
+        UserDTO result = userService.createUser(userDTO);
+
+        // Verify the result
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(user.getId(), result.getId());
+    }
+
+    @Test
+    public void testCreateUserBookNotFound() {
+        // Mock book repository
+        Long bookId = 1L;
+        Mockito.when(bookRepository.findById(bookId)).thenReturn(Optional.empty());
+
+        // Create user DTO
+        UserDTO userDTO = new UserDTO();
+        userDTO.setBookId(bookId);
+
+        // Call the method and expect NoSuchElementException
+        Assertions.assertThrows(NoSuchElementException.class, () -> userService.createUser(userDTO));
+    }
+
+    @Test
+    public void testUpdateUser() {
+        // Mock user repository
+        Long userId = 1L;
+        User existingUser = new User();
+        existingUser.setId(userId);
+        Mockito.when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+
+        // Mock book repository
+        Long bookId = 1L;
+        Book book = new Book();
+        book.setId(bookId);
+        Mockito.when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
+
+        // Mock updated user
+        User updatedUser = new User();
+        updatedUser.setId(userId);
+        updatedUser.setBook(book);
+        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(updatedUser);
+
+        // Create user DTO
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(userId);
+        userDTO.setBookId(bookId);
+
+        // Call the method
+        UserDTO result = userService.updateUser(userDTO);
+
+        // Verify the result
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(updatedUser.getId(), result.getId());
+        Assertions.assertEquals(updatedUser.getBook().getId(), result.getBookId());
+    }
+
+    @Test
+    public void testUpdateUserNotFound() {
+        // Mock user repository
+        Long userId = 1L;
+        Mockito.when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        // Create user DTO
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(userId);
+
+        // Call the method and expect NoSuchElementException
+        Assertions.assertThrows(NoSuchElementException.class, () -> userService.updateUser(userDTO));
+    }
 
 
 
