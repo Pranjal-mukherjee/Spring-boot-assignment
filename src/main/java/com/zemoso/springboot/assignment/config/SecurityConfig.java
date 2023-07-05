@@ -17,13 +17,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-         return http
-                .oauth2Login()
-                .and()
-                .logout(logout -> logout
-                        .logoutUrl("/logout") // Specify the logout URL
-                        .addLogoutHandler(logoutHandler)
-                )
-                .build();
+        http.oauth2Login();
+        http.logout(logout -> logout
+                .logoutUrl("/logout") // Specify the logout URL
+                .addLogoutHandler(logoutHandler)
+        );
+        return http.build();
     }
+
 }
