@@ -1,0 +1,47 @@
+package com.zemoso.springboot.assignment.exception;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ElementErrorResponse {
+    private int status;
+    private String message;
+    private long timeStamp;
+//    public ElementErrorResponse(){
+//
+//    }
+//
+//    public ElementErrorResponse(int status, String message, long timeStamp) {
+//        this.status = status;
+//        this.message = message;
+//        this.timeStamp = timeStamp;
+//    }
+//
+//    public int getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(int status) {
+//        this.status = status;
+//    }
+//
+//    public String getMessage() {
+//        return message;
+//    }
+//
+//    public void setMessage(String message) {
+//        this.message = message;
+//    }
+//
+//    public long getTimeStamp() {
+//        return timeStamp;
+//    }
+//
+//    public void setTimeStamp(long timeStamp) {
+//        this.timeStamp = timeStamp;
+//    }
+}
